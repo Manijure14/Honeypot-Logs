@@ -35,8 +35,10 @@ public class Session {
 				line = line.substring(20);
 				String[] split = line.split(" ");
 
-				s.login_user.add(split[2]);
-				s.login_password.add(split[3]);
+				if (split[1].equals("LOGIN:") {
+					s.login_user.add(split[2]);
+					s.login_password.add(split[3]);
+				}
 			}
 
 			for (int i = 0; i < s.login_user.size(); i++) {
