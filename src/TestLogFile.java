@@ -20,6 +20,6 @@ public class TestLogFile {
         
         file = new File(file_path);
         fd = new FileReader(file);
-        rd = new BufferedReader(new FileReader());
+        rd = new BufferedReader(fd);
     }
 }
