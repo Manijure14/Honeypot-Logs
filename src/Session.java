@@ -27,6 +27,10 @@ public class Session {
 		num_entries++;	
 	}
 	
+	public LogEntry getEntry(int index) {
+		return log_entries.get(index);
+	}
+	
 	public int get_num_entries() {
 		return num_entries;	
 	}
