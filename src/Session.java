@@ -9,13 +9,25 @@ import java.util.ArrayList;
 public class Session {
 
 	private ArrayList<LogEntry> log_entries;
+	private int num_entries;
+	
 
 	public Session() {
 		try {
 			login_entries = new ArrayList<LogEntry>();
+			num_entries = 0;
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void addEntry(LogEntry entry) {
+		log_entries.add(entry);
+		num_entries++;	
+	}
+	
+	public int get_num_entries() {
+		return num_entries;	
 	}
 }
