@@ -13,13 +13,44 @@ public class TestLogFile {
         FileReader fd;
         BufferedReader rd;
         String file_path;
+        String line;
         Scanner input = new Scanner(System.in);
         
         System.out.println("Print out the file path.");
         file_path = input.nextLine();
         
         file = new File(file_path);
-        fd = new FileReader(file);
-        rd = new BufferedReader(fd);
+        try {
+            fd = new FileReader(file);
+            rd = new BufferedReader(fd);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        
+        Session curSession = new Session();
+        
+        try {
+			while ((line = rd.readLine()) != null) {
+				String[] split = line.split(" ");
+
+                if (split[2].equals("LOGIN:")) {
+                    LogEntry entry = new LogEntry();
+                    entry.addUsername(split[3]);
+                    entry.addUsername(split[4]);
+                    entry.addLine(line);
+                    
+                    curSession.addEntry(entry);
+                }
+			}
+
+			for (int i = 0; curSession.getNumEntries(); i++) {
+				System.out.println(curSession.getEntry(i).toString());
+			}
+			
+			System.out.println("Number of entries: " + curSession.getNumEntries());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }
