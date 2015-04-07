@@ -13,13 +13,8 @@ public class Session {
 	
 
 	public Session() {
-		try {
-			login_entries = new ArrayList<LogEntry>();
-			num_entries = 0;
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		login_entries = new ArrayList<LogEntry>();
+		num_entries = 0;
 	}
 	
 	public void addEntry(LogEntry entry) {
@@ -31,7 +26,7 @@ public class Session {
 		return log_entries.get(index);
 	}
 	
-	public int get_num_entries() {
+	public int getNumEntries() {
 		return num_entries;	
 	}
 }
