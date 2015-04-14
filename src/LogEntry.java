@@ -28,14 +28,14 @@ public class LogEntry {
     }
     
     public String getLine(int index) {
-        return lines.get(i);
+        return lines.get(index);
     }
     
     public String toString() {
         String str = "";
         
         for (int i = 0; i < num_lines; i++) {
-            str += num_lines.get(i) + "\n";
+            str += lines.get(i) + "\n";
         }
         
         return str;

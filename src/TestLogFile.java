@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -11,7 +12,7 @@ public class TestLogFile {
     
         File file;
         FileReader fd;
-        BufferedReader rd;
+        BufferedReader rd=null;
         String file_path;
         String line;
         Scanner input = new Scanner(System.in);
@@ -24,7 +25,7 @@ public class TestLogFile {
             fd = new FileReader(file);
             rd = new BufferedReader(fd);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            throw new Error(e);
         }
         
         Session curSession = new Session();
@@ -43,7 +44,7 @@ public class TestLogFile {
                 }
 			}
 
-			for (int i = 0; curSession.getNumEntries(); i++) {
+			for (int i = 0; i<curSession.getNumEntries(); i++) {
 				System.out.println(curSession.getEntry(i).toString());
 			}
 			

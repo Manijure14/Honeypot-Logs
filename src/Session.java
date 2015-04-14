@@ -13,7 +13,7 @@ public class Session {
 	
 
 	public Session() {
-		login_entries = new ArrayList<LogEntry>();
+		log_entries = new ArrayList<LogEntry>();
 		num_entries = 0;
 	}
 	
