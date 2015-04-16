@@ -34,15 +34,15 @@ public class TestLogFile {
 			while ((line = rd.readLine()) != null) {
 				String[] split = line.split(" ");
 
-                if (split[2].equals("LOGIN:")) {
-                    LogEntry entry = new LogEntry();
-                    entry.putUsername(split[3]);
-                    entry.putUsername(split[4]);
-                    entry.addLine(line);
+            	if (split[2].equals("LOGIN:")) {
+                	LogEntry entry = new LogEntry();
+                	entry.putUsername(split[3]);
+                	entry.putUsername(split[4]);
+                	entry.addLine(line);
                     
                     curSession.addEntry(entry);
                 }
-			}
+		    }	
 
 			for (int i = 0; i<curSession.getNumEntries(); i++) {
 				System.out.println(curSession.getEntry(i).toString());
@@ -50,8 +50,8 @@ public class TestLogFile {
 			
 			System.out.println("Number of entries: " + curSession.getNumEntries());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 		}
     }
 }
