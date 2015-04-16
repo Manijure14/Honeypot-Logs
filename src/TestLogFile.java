@@ -36,8 +36,8 @@ public class TestLogFile {
 
                 if (split[2].equals("LOGIN:")) {
                     LogEntry entry = new LogEntry();
-                    entry.addUsername(split[3]);
-                    entry.addUsername(split[4]);
+                    entry.putUsername(split[3]);
+                    entry.putUsername(split[4]);
                     entry.addLine(line);
                     
                     curSession.addEntry(entry);
