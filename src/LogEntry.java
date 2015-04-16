@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class LogEntry {
     private ArrayList<String> lines;
-    private ArrayList<String> usernames;
-    private ArrayList<String> passwords;
+    private String username = "";
+    private String password = "";
     private int num_lines = 0;
     
     public LogEntry() {
@@ -15,16 +15,16 @@ public class LogEntry {
         num_lines++;
     }
     
-    public void addUsername(String username) {
-        usernames.add(username);
+    public void putUsername(String username) {
+        this.username = username;
     }
     
-    public void addPassword(String password) {
-        passwords.add(password);
+    public void putPassword(String password) {
+        this.password = password;
     }
     
     public String getUserPassword(int index) {
-        return usernames.get(index) + " " + passwords.get(index);
+        return username + " " + password;
     }
     
     public String getLine(int index) {
