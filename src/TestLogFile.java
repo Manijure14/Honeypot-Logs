@@ -12,7 +12,7 @@ public class TestLogFile {
     
         File file;
         FileReader fd;
-        BufferedReader rd=null;
+        BufferedReader rd = null;
         String file_path;
         String line;
         Scanner input = new Scanner(System.in);
@@ -32,8 +32,20 @@ public class TestLogFile {
         
         try {
 			while ((line = rd.readLine()) != null) {
+				
+				/* line is empty */
+				if (line.equals("") {
+					continue;
+				}
+				
+				/* line does not have a date at beginning */
+				if (!isDigit(line.charAt(0))) {
+					continue;
+				} 
+				
 				String[] split = line.split(" ");
 
+            	/* line contains a login attempt with a username and password */
             	if (split[2].equals("LOGIN:")) {
                 	LogEntry entry = new LogEntry();
                 	entry.putUsername(split[3]);
@@ -41,10 +53,17 @@ public class TestLogFile {
                 	entry.addLine(line);
                     
                     curSession.addEntry(entry);
+                
+                /* line contains important data */
+                } else if (split[2].equals("DATA: ") {
+                	
+                	entry.addLine(line);
+               
+                	curSession.addEntry(entry);
                 }
 		    }	
 
-			for (int i = 0; i<curSession.getNumEntries(); i++) {
+			for (int i = 0; i < curSession.getNumEntries(); i++) {
 				System.out.println(curSession.getEntry(i).toString());
 			}
 			
