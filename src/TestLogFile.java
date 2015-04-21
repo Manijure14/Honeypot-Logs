@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.lang.Character;
 
 public class TestLogFile {
     public static void main(String[] args) {
@@ -33,20 +34,25 @@ public class TestLogFile {
         try {
 			while ((line = rd.readLine()) != null) {
 				
+            	System.out.println(line);
+            	
+				String[] split = line.split(" ");
+				
 				/* line is empty */
-				if (line.equals("") {
+				if (line.equals("")) {
 					continue;
 				}
 				
 				/* line does not have a date at beginning */
-				if (!isDigit(line.charAt(0))) {
+				if (!line.matches("\\d\\d\\d\\d:\\d\\d:\\d\\d:\\d\\d:\\d\\d:\\d\\d.*")) {
+					System.out.println("Line doesn't match: " + line);
 					continue;
 				} 
 				
-				String[] split = line.split(" ");
+
 
             	/* line contains a login attempt with a username and password */
-            	if (split[2].equals("LOGIN:")) {
+            	if (split.length > 2 && split[2].equals("LOGIN:")) {
                 	LogEntry entry = new LogEntry();
                 	entry.putUsername(split[3]);
                 	entry.putUsername(split[4]);
@@ -55,12 +61,15 @@ public class TestLogFile {
                     curSession.addEntry(entry);
                 
                 /* line contains important data */
-                } else if (split[2].equals("DATA: ") {
+                } else if (split.length > 2 && split[2].equals("DATA: ")) {
                 	
+                	LogEntry entry = new LogEntry();
                 	entry.addLine(line);
                
                 	curSession.addEntry(entry);
                 }
+            	
+
 		    }	
 
 			for (int i = 0; i < curSession.getNumEntries(); i++) {
